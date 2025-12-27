@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高速光回線導入提案関連資料のご案内</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 30px; text-align: center; }
+        .header h1 { font-size: 28px; margin-bottom: 10px; font-weight: 600; }
+        .header p { font-size: 14px; opacity: 0.9; }
+        .notice { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px 20px; margin: 20px 30px; border-radius: 5px; font-size: 13px; line-height: 1.6; }
+        .progress-section { background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); padding: 20px 30px; margin: 20px 30px; border-radius: 12px; border-left: 4px solid #00acc1; }
+        .progress-title { font-size: 18px; font-weight: 600; color: #006064; margin-bottom: 15px; }
+        .progress-bar-container { background: white; height: 24px; border-radius: 12px; overflow: hidden; margin-bottom: 10px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #00acc1 0%, #00838f 100%); transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: white; font-size: 12px; font-weight: 600; }
+        .progress-stats { font-size: 14px; color: #00838f; font-weight: 500; }
+        .guide-section { background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%); padding: 25px 30px; margin: 20px 30px; border-radius: 12px; border-left: 4px solid #ffa726; }
+        .guide-title { font-size: 20px; font-weight: 600; color: #e65100; margin-bottom: 15px; }
+        .guide-step { background: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .guide-step-header { font-weight: 600; color: #f57c00; margin-bottom: 8px; font-size: 15px; }
+        .guide-step-content { color: #666; font-size: 14px; line-height: 1.6; }
+        .guide-step-link { color: #1976d2; text-decoration: none; font-weight: 600; }
+        .guide-special { margin-top: 15px; padding: 12px 15px; background: #e3f2fd; border-radius: 8px; font-size: 14px; color: #1565c0; }
+        .content { padding: 30px; }
+        .group-header { padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; font-weight: 600; color: white; }
+        .group-header.primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-size: 18px; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+        .group-header.secondary { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); font-size: 16px; box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3); }
+        .group-header.tertiary { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); font-size: 16px; box-shadow: 0 4px 12px rgba(237, 137, 54, 0.3); }
+        .group-header.reference { background: #f8f9fa; color: #666; font-size: 14px; border-left: 4px solid #ccc; box-shadow: none; margin-top: 30px; }
+        .file-card { background: #fff; border: 2px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 15px; transition: all 0.3s; position: relative; }
+        .file-card:hover { border-color: #667eea; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15); transform: translateY(-2px); }
+        .file-card.completed { border-color: #48bb78; background: linear-gradient(to right, #f0fdf4 0%, white 100%); }
+        .file-card.recommended { border-color: #ff6b6b; background: linear-gradient(to right, #fff5f5 0%, white 100%); }
+        .file-card.reference { opacity: 0.7; }
+        .recommended-badge { position: absolute; top: -10px; right: 20px; background: #ff6b6b; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .checkbox { position: absolute; top: 20px; right: 20px; width: 28px; height: 28px; border: 2px solid #667eea; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: white; cursor: pointer; transition: all 0.3s; }
+        .checkbox.checked { background: #48bb78; border-color: #48bb78; }
+        .checkbox.checked::after { content: '✓'; color: white; font-weight: bold; font-size: 18px; }
+        .file-header { display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; padding-right: 50px; }
+        .file-id { background: #667eea; color: white; padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; }
+        .file-id.reference { background: #999; }
+        .file-title { font-size: 16px; font-weight: 600; color: #333; flex: 1; min-width: 200px; }
+        .file-type { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+        .file-type.pdf { background: #fee; color: #c33; }
+        .file-type.audio { background: #e3f2fd; color: #1976d2; }
+        .file-type.video { background: #f3e5f5; color: #7b1fa2; }
+        .file-volume { background: #fff3e0; color: #e65100; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+        .view-count { background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+        .file-description { color: #666; font-size: 14px; line-height: 1.6; margin-top: 8px; }
+        .file-link { display: inline-block; margin-top: 12px; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 500; transition: all 0.3s; }
+        .file-link:hover { background: #5568d3; transform: translateX(3px); }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 22px; }
+            .content { padding: 20px 15px; }
+            .file-header { padding-right: 0; }
+            .checkbox { position: static; margin: 10px 0 0 auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>高速光回線導入提案関連資料のご案内</h1>
+            <p>パークホームズセンター北ブランプレミアへの高速回線導入に向けて</p>
+        </div>
+        
+        <div class="notice"><strong>ご注意:</strong> 資料内に記載の高速光回線のターゲット速度及び導入運用費用などについては、資料作成時の情報に基づいておりますので、値の変動がありますことをご了承ください。</div>
+        
+        <div class="progress-section">
+            <div class="progress-title">📊 閲覧進捗状況</div>
+            <div class="progress-bar-container"><div class="progress-bar" id="progressBar">0%</div></div>
+            <div class="progress-stats" id="progressStats">0/12ファイル閲覧済み</div>
+        </div>
+        
+        <div class="guide-section">
+            <div class="guide-title">📍 初めての方へ - おすすめの閲覧順序</div>
+            <div class="guide-step">
+                <div class="guide-step-header">ステップ1: まずはこちらから</div>
+                <div class="guide-step-content">→ <a href="#a2" class="guide-step-link">A2（動画 6分36秒）</a> - 視覚的に分かりやすい解説</div>
+            </div>
+            <div class="guide-step">
+                <div class="guide-step-header">ステップ2: 詳しく知りたい方</div>
+                <div class="guide-step-content">→ <a href="#a0" class="guide-step-link">A0（PDF 9ページ）</a> - 提案内容の全体像</div>
+            </div>
+            <div class="guide-step">
+                <div class="guide-step-header">ステップ3: 現環境との比較</div>
+                <div class="guide-step-content">→ <a href="#e2" class="guide-step-link">E2（音声 4分54秒）</a> - 短時間で違いが分かる</div>
+            </div>
+            <div class="guide-special"><strong>💼 理事会メンバーの方へ：</strong> F0から始めることをおすすめします</div>
+        </div>
+        
+        <div class="content">
+            <div class="group-header primary">📌 Aグループ - 住民向け基本資料</div>
+            
+            <div class="file-card recommended" id="a0">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="checkbox" id="check-a0" onclick="toggleComplete('a0')"></div>
+                <div class="file-header">
+                    <span class="file-id">A0</span>
+                    <span class="file-title">高速光回線導入提案</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="file-volume">📄 9ページ</span>
+                    <span class="view-count" id="count-a0">👁 0回</span>
+                </div>
+                <div class="file-description">住民の皆様に向けた導入提案書です。なぜ高速化なのか、そして何がもたらされるのか。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQBCr2VXueqJTJrzuFk8C3XKAdIDKY970eadJOOXMGYvsPE?e=HDIGwi" class="file-link" target="_blank" data-file="a0">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card" id="a1">
+                <div class="checkbox" id="check-a1" onclick="toggleComplete('a1')"></div>
+                <div class="file-header">
+                    <span class="file-id">A1</span>
+                    <span class="file-title">高速光回線導入提案:解説音声</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="file-volume">🎵 5分42秒</span>
+                    <span class="view-count" id="count-a1">👁 0回</span>
+                </div>
+                <div class="file-description">A0の資料を音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQBbEsdkpagATppyLn6t-KaTAbRHxaUsA5EXG8BUsvMh5Hw?e=EohBdP" class="file-link" target="_blank" data-file="a1">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card recommended" id="a2">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="checkbox" id="check-a2" onclick="toggleComplete('a2')"></div>
+                <div class="file-header">
+                    <span class="file-id">A2</span>
+                    <span class="file-title">高速光回線導入提案:解説動画</span>
+                    <span class="file-type video">動画</span>
+                    <span class="file-volume">🎬 6分36秒</span>
+                    <span class="view-count" id="count-a2">👁 0回</span>
+                </div>
+                <div class="file-description">A0の資料を動画で解説しています。</div>
+                <a href="https://1drv.ms/v/c/88eb1069866579f2/IQBp2gjNbRhiRKxO1kEpf0MKAYQtugOgLcS8s6gi4EKpDdI?e=qgIZoX" class="file-link" target="_blank" data-file="a2">ファイルを開く</a>
+            </div>
+            
+            <div class="group-header reference">参考資料</div>
+            
+            <div class="file-card reference" id="b">
+                <div class="checkbox" id="check-b" onclick="toggleComplete('b')"></div>
+                <div class="file-header">
+                    <span class="file-id reference">B</span>
+                    <span class="file-title">中川中央1丁目のNURO光導入済みマンションについて</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="file-volume">📄 1ページ</span>
+                    <span class="view-count" id="count-b">👁 0回</span>
+                </div>
+                <div class="file-description">周辺マンションのNURO光導入状況を示しています。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQDznskc8nysT5kJovCXixJQAYQzxLpZ-cTw-Mi0UDxtQXE?e=BC5AH3" class="file-link" target="_blank" data-file="b">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card reference" id="c">
+                <div class="checkbox" id="check-c" onclick="toggleComplete('c')"></div>
+                <div class="file-header">
+                    <span class="file-id reference">C</span>
+                    <span class="file-title">マンション光回線アップグレード説明会アジェンダ</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="file-volume">📄 2ページ</span>
+                    <span class="view-count" id="count-c">👁 0回</span>
+                </div>
+                <div class="file-description">説明会を開催する場合のアジェンダの例です。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQAnbViwKBELQphyAAQ4OHfeAYYmdkY4udZTgRUk5z7-xDE?e=z0Otr6" class="file-link" target="_blank" data-file="c">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card reference" id="d">
+                <div class="checkbox" id="check-d" onclick="toggleComplete('d')"></div>
+                <div class="file-header">
+                    <span class="file-id reference">D</span>
+                    <span class="file-title">首都圏エリアのインターネットインフラ</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="file-volume">📄 9ページ</span>
+                    <span class="view-count" id="count-d">👁 0回</span>
+                </div>
+                <div class="file-description">首都圏エリアの集合住宅におけるインターネットインフラの推移と今後。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQCx_8amj4huTa4kWmDI6BpwAV7UqlwY3JNQot65o7QifWg?e=fecbDO" class="file-link" target="_blank" data-file="d">ファイルを開く</a>
+            </div>
+            
+            <div class="group-header secondary">📊 Eグループ - 現環境との比較資料</div>
+            
+            <div class="file-card recommended" id="e0">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="checkbox" id="check-e0" onclick="toggleComplete('e0')"></div>
+                <div class="file-header">
+                    <span class="file-id">E0</span>
+                    <span class="file-title">高速回線導入提案(NUROと現環境を比較)</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="file-volume">📄 12ページ</span>
+                    <span class="view-count" id="count-e0">👁 0回</span>
+                </div>
+                <div class="file-description">現在私たちが使用中のインターネット環境とNURO光を比較した提案資料です。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQD8HsSM9lwUQb77DpCCq3GUAWFDz62N_NMLJicwDJ9qKBQ?e=ezGadl" class="file-link" target="_blank" data-file="e0">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card" id="e1">
+                <div class="checkbox" id="check-e1" onclick="toggleComplete('e1')"></div>
+                <div class="file-header">
+                    <span class="file-id">E1</span>
+                    <span class="file-title">高速回線導入提案(NURO光と現状環境の比較)音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="file-volume">🎵 13分58秒</span>
+                    <span class="view-count" id="count-e1">👁 0回</span>
+                </div>
+                <div class="file-description">E0の資料を音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQAkQZHaM7ffT7FnuZs5shJvAco6UaC2JxEpS2xuRrj4yU8?e=qdclhp" class="file-link" target="_blank" data-file="e1">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card recommended" id="e2">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="checkbox" id="check-e2" onclick="toggleComplete('e2')"></div>
+                <div class="file-header">
+                    <span class="file-id">E2</span>
+                    <span class="file-title">高速回線導入提案(NURO光と現状環境の比較)短め音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="file-volume">🎵 4分54秒</span>
+                    <span class="view-count" id="count-e2">👁 0回</span>
+                </div>
+                <div class="file-description">E0の資料を短めの音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQCHGBRurKeoSIc-8UWq2P8eAf90mNqIxJB_RwpI9n8eZN4?e=QS79Lr" class="file-link" target="_blank" data-file="e2">ファイルを開く</a>
+            </div>
+            
+            <div class="group-header tertiary">🏢 Fグループ - 理事会向け提案資料</div>
+            
+            <div class="file-card recommended" id="f0">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="checkbox" id="check-f0" onclick="toggleComplete('f0')"></div>
+                <div class="file-header">
+                    <span class="file-id">F0</span>
+                    <span class="file-title">理事会向け提案資料(NURO光とNTT光の比較)</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="file-volume">📄 13ページ</span>
+                    <span class="view-count" id="count-f0">👁 0回</span>
+                </div>
+                <div class="file-description">理事会向けに、NURO光とNTT光を比較し、今後のアクションプランを提案しています。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQDAhlGFCXYsRb7nNvfL7mtxAdQ6-RPrd-0va3DBhI30dk8?e=KaWNll" class="file-link" target="_blank" data-file="f0">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card recommended" id="f1">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="checkbox" id="check-f1" onclick="toggleComplete('f1')"></div>
+                <div class="file-header">
+                    <span class="file-id">F1</span>
+                    <span class="file-title">理事会向け提案資料(NURO光とNTT光の比較)音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="file-volume">🎵 13分00秒</span>
+                    <span class="view-count" id="count-f1">👁 0回</span>
+                </div>
+                <div class="file-description">F0の資料を音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQA7RkEVcpQ7TqzD0wuCktecAVjqgokl6hyr9c2Jl_v4eK8?e=69wqep" class="file-link" target="_blank" data-file="f1">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card" id="f2">
+                <div class="checkbox" id="check-f2" onclick="toggleComplete('f2')"></div>
+                <div class="file-header">
+                    <span class="file-id">F2</span>
+                    <span class="file-title">理事会向け提案資料(NURO光とNTT光の比較)短め音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="file-volume">🎵 4分28秒</span>
+                    <span class="view-count" id="count-f2">👁 0回</span>
+                </div>
+                <div class="file-description">F0の資料を短めの音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQC5dlwr26Y9RJHXRAHafGFxAVVoZcFOhEkCP0zQ4CFpLJc?e=1ckQvX" class="file-link" target="_blank" data-file="f2">ファイルを開く</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const files = ['a0','a1','a2','b','c','d','e0','e1','e2','f0','f1','f2'];
+        
+        function loadData() {
+            files.forEach(id => {
+                const views = parseInt(localStorage.getItem(`view_${id}`) || 0);
+                const done = localStorage.getItem(`done_${id}`) === 'true';
+                document.getElementById(`count-${id}`).textContent = `👁 ${views}回`;
+                if (done) {
+                    document.getElementById(`check-${id}`).classList.add('checked');
+                    document.getElementById(id).classList.add('completed');
+                }
+            });
+            updateProgress();
+        }
+        
+        function toggleComplete(id) {
+            const check = document.getElementById(`check-${id}`);
+            const card = document.getElementById(id);
+            const isDone = check.classList.contains('checked');
+            
+            if (isDone) {
+                check.classList.remove('checked');
+                card.classList.remove('completed');
+                localStorage.setItem(`done_${id}`, 'false');
+            } else {
+                check.classList.add('checked');
+                card.classList.add('completed');
+                localStorage.setItem(`done_${id}`, 'true');
+            }
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            let completed = 0;
+            files.forEach(id => {
+                if (localStorage.getItem(`done_${id}`) === 'true') completed++;
+            });
+            const pct = Math.round((completed / files.length) * 100);
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressBar').textContent = pct + '%';
+            document.getElementById('progressStats').textContent = `${completed}/12ファイル閲覧済み`;
+        }
+        
+        document.querySelectorAll('.file-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const id = this.getAttribute('data-file');
+                const views = parseInt(localStorage.getItem(`view_${id}`) || 0) + 1;
+                localStorage.setItem(`view_${id}`, views);
+                document.getElementById(`count-${id}`).textContent = `👁 ${views}回`;
+            });
+        });
+        
+        loadData();
+    </script>
+</body>
+</html>
