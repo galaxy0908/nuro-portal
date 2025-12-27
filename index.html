@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高速光回線導入資料ポータル</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .notice {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 30px;
+            border-radius: 5px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .group-header {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .group-header.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .group-header.secondary {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+        }
+        
+        .group-header.tertiary {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(237, 137, 54, 0.3);
+        }
+        
+        .group-header.reference {
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+            border-left: 4px solid #ccc;
+            box-shadow: none;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .file-card {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .file-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .file-card.recommended {
+            border-color: #ff6b6b;
+            background: linear-gradient(to right, #fff5f5 0%, white 100%);
+        }
+        
+        .file-card.reference {
+            opacity: 0.7;
+        }
+        
+        .recommended-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .file-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .file-id {
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        
+        .file-id.reference {
+            background: #999;
+        }
+        
+        .file-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .file-type {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .file-type.pdf { background: #fee; color: #c33; }
+        .file-type.audio { background: #e3f2fd; color: #1976d2; }
+        .file-type.video { background: #f3e5f5; color: #7b1fa2; }
+        
+        .view-count {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s;
+        }
+        
+        .view-count.admin-mode {
+            cursor: pointer;
+        }
+        
+        .view-count.admin-mode:hover {
+            background: #c8e6c9;
+            transform: scale(1.05);
+        }
+        
+        .file-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+        
+        .file-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .file-link:hover {
+            background: #5568d3;
+            transform: translateX(3px);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .file-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>高速光回線導入資料ポータル</h1>
+            <p>NURO光導入に関する資料一覧</p>
+        </div>
+        
+        <div class="notice">
+            <strong>ご注意:</strong> 資料内に記載の高速光回線のターゲット速度及び導入運用費用などについては、資料作成時の情報に基づいておりますので、値の変動がありますことをご了承ください。特に、費用については必要時に都度HPなどから最新情報を取得ください。
+        </div>
+        
+        <div id="adminPanel" style="text-align: center; margin: 20px 30px; display: none;">
+            <button id="resetAllBtn" style="background: #ff6b6b; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3); transition: all 0.3s;">
+                📊 閲覧履歴をリセット
+            </button>
+            <p style="font-size: 12px; color: #666; margin-top: 8px;">管理者モード：もう一度 Ctrl+Shift+R で非表示</p>
+        </div>
+        
+        <div class="content">
+            <div class="group-header primary">
+                📌 Aグループ - 住民向け基本資料
+            </div>
+            
+            <div class="file-card recommended">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="file-header">
+                    <span class="file-id">A0</span>
+                    <span class="file-title">高速光回線導入提案</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="view-count" id="count-a0">👁 0回</span>
+                </div>
+                <div class="file-description">住民の皆様に向けた導入提案書です。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQBCr2VXueqJTJrzuFk8C3XKAdIDKY970eadJOOXMGYvsPE?e=HDIGwi" class="file-link" target="_blank" rel="noopener noreferrer" data-file="a0">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card">
+                <div class="file-header">
+                    <span class="file-id">A1</span>
+                    <span class="file-title">高速光回線導入提案:解説音声</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="view-count" id="count-a1">👁 0回</span>
+                </div>
+                <div class="file-description">A0の資料を音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQBbEsdkpagATppyLn6t-KaTAbRHxaUsA5EXG8BUsvMh5Hw?e=EohBdP" class="file-link" target="_blank" rel="noopener noreferrer" data-file="a1">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card recommended">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="file-header">
+                    <span class="file-id">A2</span>
+                    <span class="file-title">高速光回線導入提案:解説動画</span>
+                    <span class="file-type video">動画</span>
+                    <span class="view-count" id="count-a2">👁 0回</span>
+                </div>
+                <div class="file-description">A0の資料を動画で解説しています。</div>
+                <a href="https://1drv.ms/v/c/88eb1069866579f2/IQBp2gjNbRhiRKxO1kEpf0MKAYQtugOgLcS8s6gi4EKpDdI?e=qgIZoX" class="file-link" target="_blank" rel="noopener noreferrer" data-file="a2">ファイルを開く</a>
+            </div>
+            
+            <div class="group-header reference">
+                参考資料
+            </div>
+            
+            <div class="file-card reference">
+                <div class="file-header">
+                    <span class="file-id reference">B</span>
+                    <span class="file-title">中川中央1丁目のNURO光導入済みマンションについて</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="view-count" id="count-b">👁 0回</span>
+                </div>
+                <div class="file-description">周辺マンションのNURO光導入状況を示しています。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQDznskc8nysT5kJovCXixJQAYQzxLpZ-cTw-Mi0UDxtQXE?e=BC5AH3" class="file-link" target="_blank" rel="noopener noreferrer" data-file="b">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card reference">
+                <div class="file-header">
+                    <span class="file-id reference">C</span>
+                    <span class="file-title">マンション光回線アップグレード説明会アジェンダ</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="view-count" id="count-c">👁 0回</span>
+                </div>
+                <div class="file-description">説明会を開催する場合のアジェンダの例です。(実施については、現時点では未定)</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQAnbViwKBELQphyAAQ4OHfeAYYmdkY4udZTgRUk5z7-xDE?e=z0Otr6" class="file-link" target="_blank" rel="noopener noreferrer" data-file="c">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card reference">
+                <div class="file-header">
+                    <span class="file-id reference">D</span>
+                    <span class="file-title">首都圏エリアのインターネットインフラ</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="view-count" id="count-d">👁 0回</span>
+                </div>
+                <div class="file-description">首都圏エリアの集合住宅における、インターネットインフラのこれまでの推移と今後求められているものとは。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQCx_8amj4huTa4kWmDI6BpwAV7UqlwY3JNQot65o7QifWg?e=fecbDO" class="file-link" target="_blank" rel="noopener noreferrer" data-file="d">ファイルを開く</a>
+            </div>
+            
+            <div class="group-header secondary">
+                📊 Eグループ - 現環境との比較資料
+            </div>
+            
+            <div class="file-card recommended">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="file-header">
+                    <span class="file-id">E0</span>
+                    <span class="file-title">高速回線導入提案(NUROと現環境を比較)</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="view-count" id="count-e0">👁 0回</span>
+                </div>
+                <div class="file-description">現状のインターネット環境とNURO光を比較した提案資料です。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQD8HsSM9lwUQb77DpCCq3GUAWFDz62N_NMLJicwDJ9qKBQ?e=ezGadl" class="file-link" target="_blank" rel="noopener noreferrer" data-file="e0">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card">
+                <div class="file-header">
+                    <span class="file-id">E1</span>
+                    <span class="file-title">高速回線導入提案(NURO光と現状環境の比較)音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="view-count" id="count-e1">👁 0回</span>
+                </div>
+                <div class="file-description">E0の資料を音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQAkQZHaM7ffT7FnuZs5shJvAco6UaC2JxEpS2xuRrj4yU8?e=qdclhp" class="file-link" target="_blank" rel="noopener noreferrer" data-file="e1">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card recommended">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="file-header">
+                    <span class="file-id">E2</span>
+                    <span class="file-title">高速回線導入提案(NURO光と現状環境の比較)短め音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="view-count" id="count-e2">👁 0回</span>
+                </div>
+                <div class="file-description">E0の資料を短めの音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQCHGBRurKeoSIc-8UWq2P8eAf90mNqIxJB_RwpI9n8eZN4?e=QS79Lr" class="file-link" target="_blank" rel="noopener noreferrer" data-file="e2">ファイルを開く</a>
+            </div>
+            
+            <div class="group-header tertiary">
+                🏢 Fグループ - 理事会向け提案資料
+            </div>
+            
+            <div class="file-card recommended">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="file-header">
+                    <span class="file-id">F0</span>
+                    <span class="file-title">理事会向け提案資料(NURO光とNTT光の比較)</span>
+                    <span class="file-type pdf">PDF</span>
+                    <span class="view-count" id="count-f0">👁 0回</span>
+                </div>
+                <div class="file-description">理事会向けに、NURO光とNTT光の比較し、今後のアクションプランを提案しています。</div>
+                <a href="https://1drv.ms/b/c/88eb1069866579f2/IQDAhlGFCXYsRb7nNvfL7mtxAdQ6-RPrd-0va3DBhI30dk8?e=KaWNll" class="file-link" target="_blank" rel="noopener noreferrer" data-file="f0">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card recommended">
+                <span class="recommended-badge">★ おすすめ</span>
+                <div class="file-header">
+                    <span class="file-id">F1</span>
+                    <span class="file-title">理事会向け提案資料(NURO光とNTT光の比較)音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="view-count" id="count-f1">👁 0回</span>
+                </div>
+                <div class="file-description">F0の資料を音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQA7RkEVcpQ7TqzD0wuCktecAVjqgokl6hyr9c2Jl_v4eK8?e=69wqep" class="file-link" target="_blank" rel="noopener noreferrer" data-file="f1">ファイルを開く</a>
+            </div>
+            
+            <div class="file-card">
+                <div class="file-header">
+                    <span class="file-id">F2</span>
+                    <span class="file-title">理事会向け提案資料(NURO光とNTT光の比較)短め音声解説</span>
+                    <span class="file-type audio">音声</span>
+                    <span class="view-count" id="count-f2">👁 0回</span>
+                </div>
+                <div class="file-description">F0の資料を短めの音声で解説しています。</div>
+                <a href="https://1drv.ms/u/c/88eb1069866579f2/IQC5dlwr26Y9RJHXRAHafGFxAVVoZcFOhEkCP0zQ4CFpLJc?e=1ckQvX" class="file-link" target="_blank" rel="noopener noreferrer" data-file="f2">ファイルを開く</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 閲覧回数を管理
+        const viewCounts = {};
+        const fileIds = ['a0', 'a1', 'a2', 'b', 'c', 'd', 'e0', 'e1', 'e2', 'f0', 'f1', 'f2'];
+        let adminMode = false;
+
+        // 初期化：保存された閲覧回数を読み込む
+        function loadViewCounts() {
+            fileIds.forEach(id => {
+                const stored = localStorage.getItem(`view_count_${id}`);
+                viewCounts[id] = stored ? parseInt(stored) : 0;
+                updateDisplay(id);
+            });
+        }
+
+        // 表示を更新
+        function updateDisplay(fileId) {
+            const element = document.getElementById(`count-${fileId}`);
+            if (element) {
+                element.textContent = `👁 ${viewCounts[fileId]}回`;
+            }
+        }
+
+        // 管理者モード切り替え（Ctrl+Shift+R）
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'R') {
+                e.preventDefault();
+                adminMode = !adminMode;
+                const panel = document.getElementById('adminPanel');
+                const badges = document.querySelectorAll('.view-count');
+                
+                if (adminMode) {
+                    panel.style.display = 'block';
+                    badges.forEach(badge => badge.classList.add('admin-mode'));
+                } else {
+                    panel.style.display = 'none';
+                    badges.forEach(badge => badge.classList.remove('admin-mode'));
+                }
+            }
+        });
+
+        // リンククリック時の処理
+        document.querySelectorAll('.file-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const fileId = this.getAttribute('data-file');
+                if (fileId) {
+                    viewCounts[fileId] = (viewCounts[fileId] || 0) + 1;
+                    localStorage.setItem(`view_count_${fileId}`, viewCounts[fileId]);
+                    updateDisplay(fileId);
+                }
+            });
+        });
+
+        // 個別リセット（バッジクリック）- 管理者モード時のみ有効
+        document.querySelectorAll('.view-count').forEach(badge => {
+            badge.addEventListener('click', function(e) {
+                if (!adminMode) return;
+                
+                e.preventDefault();
+                e.stopPropagation();
+                const fileId = this.id.replace('count-', '');
+                if (confirm(`${fileId.toUpperCase()}の閲覧履歴をリセットしますか？`)) {
+                    viewCounts[fileId] = 0;
+                    localStorage.setItem(`view_count_${fileId}`, 0);
+                    updateDisplay(fileId);
+                }
+            });
+        });
+
+        // 全体リセットボタン
+        document.getElementById('resetAllBtn').addEventListener('click', function() {
+            if (confirm('すべてのファイルの閲覧履歴をリセットしますか？')) {
+                fileIds.forEach(id => {
+                    viewCounts[id] = 0;
+                    localStorage.setItem(`view_count_${id}`, 0);
+                    updateDisplay(id);
+                });
+                alert('すべての閲覧履歴がリセットされました。');
+            }
+        });
+
+        // ページ読み込み時に実行
+        loadViewCounts();
+    </script>
+</body>
+</html>
