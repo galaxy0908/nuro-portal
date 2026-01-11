@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTT光 vs NURO光 性能比較</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Yu Gothic', YuGothic, 'Hiragino Sans', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+        .provider-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        .provider-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .provider-card.ntt {
+            border-top: 5px solid #ff6b6b;
+        }
+        .provider-card.nuro {
+            border-top: 5px solid #4ecdc4;
+        }
+        .provider-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .metric {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        .metric-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        .metric-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .metric-value.highlight {
+            color: #27ae60;
+        }
+        .features-section {
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .feature-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .feature-title::before {
+            content: "📊";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .feature-content {
+            line-height: 1.8;
+            color: #555;
+        }
+        .note-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 40px 40px 40px;
+            border-radius: 10px;
+        }
+        .note-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .note-content {
+            color: #856404;
+            line-height: 1.6;
+        }
+        .spec-table {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .spec-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .spec-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .features-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💡 光回線 性能比較</h1>
+            <p class="subtitle">NTT光 vs NURO光 | 実測値で徹底比較</p>
+        </header>
+
+        <div class="comparison-grid">
+            <div class="provider-card ntt">
+                <div class="provider-name">NTT光</div>
+                <p style="color: #7f8c8d; margin-bottom: 20px; font-size: 0.9em;">フレッツ光 / ドコモ光等</p>
+                
+                <div class="metric">
+                    <div class="metric-label">最大通信速度（理論値）</div>
+                    <div class="metric-value">下り 1Gbps / 上り 1Gbps</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">平均ダウンロード速度</div>
+                    <div class="metric-value">350〜450 Mbps</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">平均アップロード速度</div>
+                    <div class="metric-value">250〜350 Mbps</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">平均Ping値（応答速度）</div>
+                    <div class="metric-value">15〜25 ms</div>
+                </div>
+
+                <div class="spec-table">
+                    <div class="spec-row">
+                        <span class="spec-label">通信規格</span>
+                        <span class="spec-value">GE-PON</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">提供エリア</span>
+                        <span class="spec-value">全国95%以上</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="provider-card nuro">
+                <div class="provider-name">NURO光</div>
+                <p style="color: #7f8c8d; margin-bottom: 20px; font-size: 0.9em;">2ギガプラン</p>
+                
+                <div class="metric">
+                    <div class="metric-label">最大通信速度（理論値）</div>
+                    <div class="metric-value highlight">下り 2Gbps / 上り 1Gbps</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">平均ダウンロード速度</div>
+                    <div class="metric-value highlight">820〜850 Mbps</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">平均アップロード速度</div>
+                    <div class="metric-value highlight">710〜750 Mbps</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">平均Ping値（応答速度）</div>
+                    <div class="metric-value highlight">11〜13 ms</div>
+                </div>
+
+                <div class="spec-table">
+                    <div class="spec-row">
+                        <span class="spec-label">通信規格</span>
+                        <span class="spec-value">G-PON</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">提供エリア</span>
+                        <span class="spec-value">主要都市圏中心</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="feature-box">
+                <div class="feature-title">ダウンロード速度の圧倒的な差</div>
+                <div class="feature-content">
+                    NURO光の実測値はNTT系の<strong>約2倍以上</strong>のパフォーマンスを記録しています。これは、家庭に届く手前の局舎からユーザー宅までの通信規格（G-PON）の設計上の上限が2Gbpsと高いためです。4K動画の視聴や大容量ゲームのダウンロードでは、NURO光が圧倒的に有利です。
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-title">Ping値（応答速度）の優位性</div>
+                <div class="feature-content">
+                    オンラインゲームの快適さを左右するPing値においても、NURO光は10ms前後と非常に優秀です。NTT光もIPv6（IPoE）接続を利用すれば20ms以下で安定しますが、構造的にNURO光の方が低遅延になりやすい傾向があります。
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-title">安定性と混雑への強さ</div>
+                <div class="feature-content">
+                    <p style="margin-bottom: 15px;"><strong>NTT光（光コラボ）：</strong><br>
+                    契約者が非常に多いため、夜間の混雑時間帯に速度低下が起こりやすい傾向があります。ただし、プロバイダ選び（IPoE接続対応か）によって実測値は大きく変動します。</p>
+                    
+                    <p><strong>NURO光：</strong><br>
+                    独自回線を使用しているため、NTT系回線の混雑の影響を受けにくいのが強みです。ただし、特定の集合住宅などで利用者が集中した際に一時的な不安定さが報告されるケースもあります。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <div class="note-title">⚠️ 実測値は環境に左右されます</div>
+            <div class="note-content">
+                上記の数値はあくまで平均値です。お住まいの地域、建物の配線方式（マンションがVDSL方式だと最大100Mbpsに制限される等）、使用するルーターやLANケーブルの規格によって、実際の速度は上下します。
+            </div>
+        </div>
+    </div>
+</body>
+</html>
