@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTT光 vs NURO光 コスト比較</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Yu Gothic', YuGothic, 'Hiragino Sans', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .info-banner {
+            background: #fff3e0;
+            padding: 20px 40px;
+            border-left: 5px solid #ff9800;
+            margin: 30px 40px;
+            border-radius: 10px;
+        }
+        .info-banner-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .info-banner-text {
+            color: #e65100;
+            line-height: 1.6;
+        }
+        .comparison-table {
+            margin: 40px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .row-header {
+            font-weight: 600;
+            color: #2c3e50;
+            background: #f8f9fa !important;
+        }
+        .best-value {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .total-row {
+            background: #fff9e6 !important;
+            font-weight: bold;
+            font-size: 1.15em;
+        }
+        .plan-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        .plan-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .plan-card.recommended {
+            border: 3px solid #27ae60;
+            position: relative;
+        }
+        .recommended-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .plan-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .plan-subtitle {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .plan-features {
+            margin-top: 20px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .feature-item::before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .warning-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #e74c3c;
+        }
+        .warning-item::before {
+            content: "⚠";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .checklist-section {
+            padding: 40px;
+            background: white;
+        }
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: "📋";
+            margin-right: 15px;
+        }
+        .check-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        .check-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+        .check-content {
+            line-height: 1.8;
+            color: #555;
+        }
+        .footnote {
+            background: #e8f5e9;
+            padding: 15px 40px;
+            color: #2e7d32;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .price-highlight {
+            font-size: 2em;
+            color: #27ae60;
+            font-weight: bold;
+            display: block;
+            margin: 15px 0;
+        }
+        @media (max-width: 768px) {
+            .comparison-table {
+                margin: 20px;
+            }
+            table {
+                font-size: 0.85em;
+            }
+            th, td {
+                padding: 12px 10px;
+            }
+            .plan-cards {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 光回線 コスト比較</h1>
+            <p class="subtitle">集合住宅で5年間利用した場合の総額シミュレーション（2026年版）</p>
+        </header>
+
+        <div class="info-banner">
+            <div class="info-banner-title">🎯 比較条件</div>
+            <div class="info-banner-text">
+                集合住宅（マンション・アパート）で5年間継続利用した場合のトータルコストを、2026年現在の主要キャンペーン（高額キャッシュバック・工事費実質無料特典）を適用して算出しています。
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>項目</th>
+                        <th>NTT光<br><span style="font-size: 0.85em; font-weight: normal;">（ドコモ光等）</span></th>
+                        <th>NURO光<br><span style="font-size: 0.85em; font-weight: normal;">（設備導入済）</span></th>
+                        <th>NURO光<br><span style="font-size: 0.85em; font-weight: normal;">（個別引込）</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-header">プラン名</td>
+                        <td>マンションタイプ</td>
+                        <td>NURO光 for マンション</td>
+                        <td>NURO光 マンション</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">月額料金</td>
+                        <td>約4,400円</td>
+                        <td class="best-value">約2,500円</td>
+                        <td>3,850円</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">5年間の月額累計</td>
+                        <td>264,000円</td>
+                        <td class="best-value">150,000円</td>
+                        <td>231,000円</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">事務手数料</td>
+                        <td>3,300円</td>
+                        <td>3,300円</td>
+                        <td>3,300円</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">工事費</td>
+                        <td class="best-value">0円（完全無料）</td>
+                        <td>0円（実質無料）</td>
+                        <td>0円（実質無料）</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">キャッシュバック</td>
+                        <td>▲45,000円</td>
+                        <td>▲25,000円</td>
+                        <td class="best-value">▲55,000円</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>5年間の総支払額</td>
+                        <td>222,300円</td>
+                        <td class="best-value">128,300円</td>
+                        <td>179,300円</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>実質月額コスト</td>
+                        <td>約3,705円</td>
+                        <td class="best-value">約2,138円</td>
+                        <td>約2,988円</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footnote">
+            <strong>※1</strong> NURO光 for マンションは同一建物内の利用者数に応じて2,090円〜2,750円の間で変動します。<br>
+            <strong>※2</strong> 工事費（44,000円）は36回分割で同額が割引されるため、3年以上の利用で実質0円となります。
+        </div>
+
+        <div class="plan-cards">
+            <div class="plan-card recommended">
+                <div class="recommended-badge">最安値</div>
+                <div class="plan-title">NURO光 for マンション</div>
+                <div class="plan-subtitle">設備導入済み物件限定</div>
+                <span class="price-highlight">128,300円</span>
+                <p style="color: #7f8c8d; margin-bottom: 20px;">5年間総額 | 実質月額 約2,138円</p>
+                
+                <div class="plan-features">
+                    <div class="feature-item">建物内に既にNURO設備がある場合に契約可能</div>
+                    <div class="feature-item">月額料金が圧倒的に安い（約2,500円）</div>
+                    <div class="feature-item">5年間でNTT系より約10万円お得</div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <div class="warning-item">導入済み物件が限られる</div>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-title">NURO光 マンション</div>
+                <div class="plan-subtitle">個別引込タイプ</div>
+                <span class="price-highlight">179,300円</span>
+                <p style="color: #7f8c8d; margin-bottom: 20px;">5年間総額 | 実質月額 約2,988円</p>
+                
+                <div class="plan-features">
+                    <div class="feature-item">建物に設備がなくても契約可能</div>
+                    <div class="feature-item">戸別に直接回線を引くタイプ</div>
+                    <div class="feature-item">高額キャッシュバック（55,000円）</div>
+                    <div class="feature-item">NTT系よりトータルコストを抑えられる</div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <div class="warning-item">退去時に撤去費用が発生する可能性あり</div>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-title">NTT光</div>
+                <div class="plan-subtitle">ドコモ光 / ソフトバンク光等</div>
+                <span class="price-highlight">222,300円</span>
+                <p style="color: #7f8c8d; margin-bottom: 20px;">5年間総額 | 実質月額 約3,705円</p>
+                
+                <div class="plan-features">
+                    <div class="feature-item">スマホセット割でさらにお得（家族3人以上で実質マイナスも）</div>
+                    <div class="feature-item">ほぼ全てのマンションで工事がスムーズ</div>
+                    <div class="feature-item">工事費が完全無料（いつ解約しても残債なし）</div>
+                    <div class="feature-item">無派遣工事（立ち会いなし）で済むケースが多い</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist-section">
+            <div class="section-title">5年利用時の重要チェックポイント</div>
+            
+            <div class="check-item">
+                <div class="check-title">🔧 工事費：「完全無料」vs「実質無料」</div>
+                <div class="check-content">
+                    <strong>NTT系（ドコモ光など）：</strong> 工事費が「完全無料」になるキャンペーンを実施。いつ解約しても工事費の支払いは発生しません。<br><br>
+                    <strong>NURO光：</strong> 「36回払いと同額割引」方式のため、3年未満で解約すると残債を請求されます。5年使う前提であれば、どちらも負担は0円になります。
+                </div>
+            </div>
+
+            <div class="check-item">
+                <div class="check-title">🏠 撤去費用について</div>
+                <div class="check-content">
+                    NURO光を個別で引き込んだ場合、退去時に回線撤去が必要になると撤去費用（約1万円〜）が発生する可能性があります。賃貸物件の場合は、管理会社に「残置（そのまま置いていく）」が可能か事前に確認しておくと安心です。
+                </div>
+            </div>
+
+            <div class="check-item">
+                <div class="check-title">📱 スマホセット割の活用</div>
+                <div class="check-content">
+                    家族でドコモやソフトバンクを使っている場合、スマホ1台につき月1,100円の割引が適用されます。家族3人以上なら、実質的に回線利用料がマイナス（利益が出る）状態になることもあります。
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
