@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>高速光回線導入提案関連資料のご案内</title>
     <style>
-        /* スタイル部分は変更なし */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
@@ -13,7 +12,7 @@
         .header h1 { font-size: 28px; margin-bottom: 10px; font-weight: 600; }
         .header p { font-size: 14px; opacity: 0.9; }
         .notice { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px 20px; margin: 20px 30px; border-radius: 5px; font-size: 13px; line-height: 1.6; }
-        .progress-section { display: none !important; }
+        
         .guide-section { background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%); padding: 25px 30px; margin: 20px 30px; border-radius: 12px; border-left: 4px solid #ffa726; }
         .guide-title { font-size: 20px; font-weight: 600; color: #e65100; margin-bottom: 15px; }
         .guide-step { background: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
@@ -22,16 +21,18 @@
         .guide-step-link { color: #1976d2; text-decoration: none; font-weight: 600; }
         .guide-section.board-member { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #1976d2; }
         .guide-section.board-member .guide-title { color: #0d47a1; }
-        .reset-button, .export-button { display: none; padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin: 20px 30px; transition: all 0.3s; }
+        
         .content { padding: 30px; }
         .group-header { padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; font-weight: 600; color: white; }
         .group-header.primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-size: 18px; }
         .group-header.secondary { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); font-size: 16px; }
         .group-header.tertiary { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); font-size: 16px; }
-        .group-header.reference { background: #f8f9fa; color: #666; font-size: 14px; border-left: 4px solid #ccc; }
+        .group-header.reference { background: #f8f9fa; color: #666; font-size: 14px; border-left: 4px solid #ccc; margin-top: 30px; }
+        
         .file-card { background: #fff; border: 2px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 15px; transition: all 0.3s; position: relative; }
         .file-card.recommended { border-color: #ff6b6b; background: linear-gradient(to right, #fff5f5 0%, white 100%); }
         .recommended-badge { position: absolute; top: -10px; right: 20px; background: #ff6b6b; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        
         .file-header { display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
         .file-id { background: #667eea; color: white; padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; }
         .file-title { font-size: 16px; font-weight: 600; color: #333; flex: 1; min-width: 200px; }
@@ -39,10 +40,22 @@
         .file-type.pdf { background: #fee; color: #c33; }
         .file-type.audio { background: #e3f2fd; color: #1976d2; }
         .file-type.video { background: #f3e5f5; color: #7b1fa2; }
-        .file-volume { background: #fff3e0; color: #e65100; padding: 4px 10px; border-radius: 6px; font-size: 12px; }
+        .file-volume { background: #fff3e0; color: #e65100; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
         .file-description { color: #666; font-size: 14px; line-height: 1.6; margin-top: 8px; }
-        .file-link { display: inline-block; margin-top: 12px; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; cursor: pointer; border: none; }
-        .detail-toggle-btn { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; margin-top: 15px; display: flex; align-items: center; gap: 8px; }
+        
+        /* ボタン・UI関連 */
+        .video-selector { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px; }
+        .btn-play { display: flex; flex-direction: column; align-items: flex-start; padding: 12px 20px; border-radius: 10px; text-decoration: none; color: white; transition: all 0.3s; border: none; cursor: pointer; min-width: 220px; }
+        .btn-youtube { background: #ff0000; box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2); }
+        .btn-youtube:hover { background: #cc0000; transform: translateY(-2px); }
+        .btn-mega { background: #d9272e; box-shadow: 0 4px 12px rgba(217, 39, 46, 0.2); }
+        .btn-mega:hover { background: #b01f25; transform: translateY(-2px); }
+        .btn-main-text { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+        .btn-sub-text { font-size: 11px; opacity: 0.9; }
+        
+        .file-link { display: inline-block; margin-top: 12px; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 500; transition: all 0.3s; cursor: pointer; border: none; }
+        
+        .detail-toggle-btn { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 15px; display: flex; align-items: center; gap: 8px; }
         .detail-section { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, opacity 0.5s; opacity: 0; }
         .detail-section.expanded { max-height: 2000px; opacity: 1; margin-top: 20px; }
         .detail-tabs { display: flex; gap: 10px; border-bottom: 2px solid #e0e0e0; }
@@ -51,6 +64,10 @@
         .detail-content { display: none; }
         .detail-content.active { display: block; }
         .close-detail-btn { background: #999; color: white; padding: 10px 20px; border: none; border-radius: 8px; margin-top: 15px; cursor: pointer; }
+
+        @media (max-width: 600px) {
+            .btn-play { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -72,22 +89,7 @@
                 <div class="guide-step-header">ステップ2: 詳しく知りたい方</div>
                 <div class="guide-step-content">→ <a href="#a0" class="guide-step-link">A0(PDF 9ページ)</a> - 提案内容の全体像</div>
             </div>
-            <div class="guide-step">
-                <div class="guide-step-header">ステップ3: 現環境との比較</div>
-                <div class="guide-step-content">→ <a href="#e2" class="guide-step-link">E2(音声 4分54秒)</a> - 短時間で違いが分かる</div>
-            </div>
         </div>
-        
-        <div class="guide-section board-member">
-            <div class="guide-title">💼 理事会メンバーの方へ</div>
-            <div class="guide-step">
-                <div class="guide-step-header">推奨資料</div>
-                <div class="guide-step-content">→ <a href="#f1" class="guide-step-link">FグループのF1</a>から始めることをお薦めします。</div>
-            </div>
-        </div>
-        
-        <button id="exportButton" class="export-button" onclick="exportStats()">📥 統計データをダウンロード</button>
-        <button id="resetButton" class="reset-button" onclick="resetAllProgress()">🔄 閲覧履歴をリセット</button>
         
         <div class="content" id="fileList"></div>
     </div>
@@ -99,11 +101,6 @@
                 {id: 'a1', title: '高速光回線導入提案:解説音声', type: 'audio', volume: '5分42秒', desc: 'A0の資料を音声で解説しています。', url: 'https://galaxy0908.github.io/nuro-portal/files/A1_proposal_audio.mp3'},
                 {id: 'a2', title: '高速光回線導入提案:解説動画', type: 'video', volume: '6分33秒', desc: 'A0の資料を動画で解説しています。', url: 'https://galaxy0908.github.io/nuro-portal/files/A2_proposal_video.mp4', recommended: true}
             ]},
-            {group: 'reference', groupTitle: '参考資料', files: [
-                {id: 'b', title: '中川中央1丁目のNURO光導入済みマンションについて', type: 'pdf', volume: '1ページ', desc: '周辺マンションの状況を示しています。', url: 'https://galaxy0908.github.io/nuro-portal/files/B_nakagawa_reference.pdf', isRef: true},
-                {id: 'c', title: 'マンション光回線アップグレード説明会アジェンダ', type: 'pdf', volume: '2ページ', desc: '説明会のアジェンダ例です。', url: 'https://galaxy0908.github.io/nuro-portal/files/C_meeting_agenda.pdf', isRef: true},
-                {id: 'd', title: '首都圏エリアのインターネットインフラ', type: 'pdf', volume: '9ページ', desc: 'インフラの推移と今後。', url: 'https://galaxy0908.github.io/nuro-portal/files/D_infrastructure.pdf', isRef: true}
-            ]},
             {group: 'secondary', groupTitle: '📊 Eグループ - 現環境との比較資料', files: [
                 {id: 'e0', title: '高速回線導入提案(NUROと現環境を比較)', type: 'pdf', volume: '12ページ', desc: 'NURO光を比較した提案資料です。', url: 'https://galaxy0908.github.io/nuro-portal/files/E0_comparison.pdf', recommended: true},
                 {id: 'e1', title: '高速回線導入提案(NURO光と現状環境の比較)音声解説', type: 'audio', volume: '13分58秒', desc: 'E0の資料を音声で解説しています。', url: 'https://galaxy0908.github.io/nuro-portal/files/E1_comparison_audio.m4a'},
@@ -111,18 +108,18 @@
             ]},
             {group: 'tertiary', groupTitle: '🏢 Fグループ - 理事会向け提案資料', files: [
                 {id: 'f0', title: '理事会向け提案資料(NURO光とNTT光の比較)', type: 'pdf', volume: '10ページ', desc: 'NURO光とNTT光を比較した提案資料です。', url: 'https://galaxy0908.github.io/nuro-portal/files/F0_board_proposal.pdf', recommended: true},
-                {id: 'f1', title: '理事会向け総合提案動画', type: 'video', volume: '8分43秒', desc: 'F0の資料を含め、動画による総合的な提案を行っています。', url: 'https://mega.nz/file/A5VgBQxK#TNo2iNLNWIaLVou4XRF4XT1t4yNK0lnxU-zUIHl6a2o', recommended: true},
+                {id: 'f1', title: '理事会向け総合提案動画', type: 'video', volume: '8分43秒', desc: '動画による総合的な提案を行っています。YouTube環境がない方はMEGAをご利用ください。', 
+                 youtubeUrl: 'https://youtu.be/xPYsug-GYNA', 
+                 megaUrl: 'https://mega.nz/file/A5VgBQxK#TNo2iNLNWIaLVou4XRF4XT1t4yNK0lnxU-zUIHl6a2o', 
+                 recommended: true},
                 {id: 'f2', title: '理事会向け提案資料(NURO光とNTT光の比較)短め音声解説', type: 'audio', volume: '4分31秒', desc: 'F0の資料を短めの音声で解説しています。', url: 'https://galaxy0908.github.io/nuro-portal/files/F2_board_audio_s.mp3', recommended: true}
             ], 
             hasDetailSection: true,
             detailFiles: [
-                {id: 'f3', title: '性能比較(NTT光 vs NURO光)-2026.1版', type: 'html', volume: 'Webページ', desc: '通信速度や特性の詳細な比較資料です。', url: 'https://galaxy0908.github.io/nuro-portal/files/F3_performance.html', isRef: true},
-                {id: 'f4', title: 'コスト比較(NTT光 vs NURO光)-2026.1版', type: 'html', volume: 'Webページ', desc: '5年間利用時の詳細コスト比較資料です。', url: 'https://galaxy0908.github.io/nuro-portal/files/F4_cost.html', isRef: true}
+                {id: 'f3', title: '性能比較(NTT光 vs NURO光)-2026.1版', type: 'html', volume: 'Webページ', desc: '詳細な比較資料です。', url: 'https://galaxy0908.github.io/nuro-portal/files/F3_performance.html', isRef: true},
+                {id: 'f4', title: 'コスト比較(NTT光 vs NURO光)-2026.1版', type: 'html', volume: 'Webページ', desc: '5年間のトータルコスト比較です。', url: 'https://galaxy0908.github.io/nuro-portal/files/F4_cost.html', isRef: true}
             ]}
         ];
-
-        const allFiles = fileData.flatMap(g => g.files.map(f => f.id));
-        let adminMode = false;
 
         function renderFiles() {
             const container = document.getElementById('fileList');
@@ -131,30 +128,25 @@
             fileData.forEach(groupData => {
                 html += `<div class="group-header ${groupData.group}">${groupData.groupTitle}</div>`;
                 groupData.files.forEach(file => {
-                    const idClass = file.isRef ? 'reference' : '';
-                    const cardClass = file.isRef ? 'reference' : (file.recommended ? 'recommended' : '');
+                    const cardClass = file.recommended ? 'recommended' : '';
                     html += `
                         <div class="file-card ${cardClass}" id="${file.id}">
                             ${file.recommended ? '<span class="recommended-badge">★ おすすめ</span>' : ''}
                             <div class="file-header">
-                                <span class="file-id ${idClass}">${file.id.toUpperCase()}</span>
+                                <span class="file-id">${file.id.toUpperCase()}</span>
                                 <span class="file-title">${file.title}</span>
                                 <span class="file-type ${file.type}">${file.type === 'pdf' ? 'PDF' : file.type === 'audio' ? '音声' : '動画'}</span>
-                                <span class="file-volume">${file.type === 'pdf' ? '📄' : file.type === 'audio' ? '🎵' : '🎬'} ${file.volume}</span>
-                                <span class="view-count" id="count-${file.id}" style="display:none">👁 0回</span>
+                                <span class="file-volume">${file.volume}</span>
                             </div>
                             <div class="file-description">${file.desc}</div>
                             ${renderMedia(file)}
                         </div>
                     `;
                 });
-                
-                if (groupData.hasDetailSection && groupData.detailFiles) {
+
+                if (groupData.hasDetailSection) {
                     html += `
-                        <button class="detail-toggle-btn" onclick="toggleDetailSection()">
-                            <span id="detail-icon">📊</span>
-                            <span id="detail-text">詳細比較データを表示</span>
-                        </button>
+                        <button class="detail-toggle-btn" onclick="toggleDetailSection()">📊 詳細比較データを表示</button>
                         <div class="detail-section" id="detailSection">
                             <div class="detail-tabs">
                                 <button class="detail-tab active" onclick="switchTab(0)">🚀 性能比較</button>
@@ -162,7 +154,6 @@
                             </div>
                             <div class="detail-content active" id="detailContent0">${renderDetailFile(groupData.detailFiles[0])}</div>
                             <div class="detail-content" id="detailContent1">${renderDetailFile(groupData.detailFiles[1])}</div>
-                            <button class="close-detail-btn" onclick="toggleDetailSection()">✕ 閉じる</button>
                         </div>
                     `;
                 }
@@ -170,144 +161,102 @@
             container.innerHTML = html;
         }
 
-        function renderDetailFile(file) {
-            return `
-                <div class="file-card" id="${file.id}">
-                    <div class="file-header">
-                        <span class="file-id">${file.id.toUpperCase()}</span>
-                        <span class="file-title">${file.title}</span>
-                        <span class="file-volume">🌐 ${file.volume}</span>
-                    </div>
-                    <div class="file-description">${file.desc}</div>
-                    <div style="margin-top: 12px;">
-                        <a href="${file.url}" target="_blank" rel="noopener noreferrer" class="file-link" style="background: #48bb78;">
-                            🌐 Webページを別タブで開く
-                        </a>
-                    </div>
-                </div>
-            `;
-        }
-
         function renderMedia(file) {
-            if (file.type === 'pdf') {
+            // F1: YouTubeとMEGAの選択式
+            if (file.id === 'f1') {
                 return `
-                    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px;">
-                        <button class="file-link" id="preview-btn-${file.id}" onclick="showPDF('${file.id}', '${file.url}')">▼ ページ内でプレビュー</button>
-                        <a href="${file.url}" target="_blank" class="file-link" style="background: #764ba2;">📄 PDFを別タブで開く</a>
+                    <div class="video-selector">
+                        <button class="btn-play btn-youtube" onclick="showExternalVideo('f1', 'youtube', 'xPYsug-GYNA')">
+                            <span class="btn-main-text">🎬 YouTubeで視聴</span>
+                            <span class="btn-sub-text">通常はこちら（高画質）</span>
+                        </button>
+                        <button class="btn-play btn-mega" onclick="showExternalVideo('f1', 'mega', '${file.megaUrl}')">
+                            <span class="btn-main-text">☁️ MEGAで視聴(代替)</span>
+                            <span class="btn-sub-text">YouTubeが見られない環境の方</span>
+                        </button>
                     </div>
-                    <div id="pdf-container-${file.id}" style="display: none; margin-top: 12px;">
-                        <iframe id="pdf-${file.id}" style="width: 100%; height: 600px; border: 1px solid #ddd; border-radius: 8px;"></iframe>
-                        <button class="file-link" style="margin-top: 10px; background: #999;" onclick="hidePDF('${file.id}')">▲ 閉じる</button>
-                    </div>
-                `;
-            } else if (file.type === 'audio') {
-                return `<audio controls style="width: 100%; margin-top: 12px;" onplay="trackView('${file.id}')">
-                    <source src="${file.url}" type="audio/mpeg">
-                </audio>`;
-            } else if (file.type === 'video') {
-                // MEGA, YouTube, Vimeoの判定
-                if (file.url.includes('mega.nz')) {
-                    return `
-                        <button class="file-link" id="video-btn-${file.id}" onclick="showExternalVideo('${file.id}', 'mega', '${file.url}')">動画を表示(MEGA)</button>
-                        <div id="video-container-${file.id}" style="display: none; margin-top: 12px;">
-                            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000;">
-                                <iframe id="video-${file.id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="" allowfullscreen></iframe>
-                            </div>
-                            <button class="file-link" style="margin-top: 10px; background: #999;" onclick="hideExternalVideo('${file.id}')">✕ 動画を閉じる</button>
+                    <div id="video-container-f1" style="display: none; margin-top: 15px;">
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000;">
+                            <iframe id="video-f1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="" allowfullscreen></iframe>
                         </div>
-                    `;
-                } else if (file.url.includes('youtube.com') || file.url.includes('youtu.be')) {
-                    let videoId = file.url.includes('watch?v=') ? file.url.split('v=')[1].split('&')[0] : file.url.split('youtu.be/')[1];
-                    return `
-                        <button class="file-link" id="video-btn-${file.id}" onclick="showExternalVideo('${file.id}', 'youtube', '${videoId}')">動画を表示(YouTube)</button>
-                        <div id="video-container-${file.id}" style="display: none; margin-top: 12px;">
-                            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-                                <iframe id="video-${file.id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="" allowfullscreen></iframe>
-                            </div>
-                            <button class="file-link" style="margin-top: 10px; background: #999;" onclick="hideExternalVideo('${file.id}')">✕ 動画を閉じる</button>
-                        </div>
-                    `;
-                }
-                // 通常のMP4ファイル等
-                return `
-                    <button class="file-link" id="video-btn-${file.id}" onclick="showVideo('${file.id}')">動画を表示</button>
-                    <div id="video-container-${file.id}" style="display: none; margin-top: 12px;">
-                        <video id="video-${file.id}" controls style="width: 100%; border-radius: 8px;">
-                            <source src="${file.url}" type="video/mp4">
-                        </video>
-                        <button class="file-link" style="margin-top: 10px; background: #999;" onclick="hideVideo('${file.id}')">✕ 動画を閉じる</button>
+                        <button class="file-link" style="margin-top: 10px; background: #999;" onclick="hideExternalVideo('f1')">✕ 動画を閉じる</button>
                     </div>
                 `;
             }
+
+            if (file.type === 'pdf') {
+                return `
+                    <div style="display:flex; gap:10px; margin-top:12px;">
+                        <button class="file-link" onclick="showPDF('${file.id}', '${file.url}')">▼ プレビュー</button>
+                        <a href="${file.url}" target="_blank" class="file-link" style="background:#764ba2;">📄 別タブで開く</a>
+                    </div>
+                    <div id="pdf-container-${file.id}" style="display:none; margin-top:12px;">
+                        <iframe id="pdf-${file.id}" style="width:100%; height:500px; border:1px solid #ddd; border-radius:8px;"></iframe>
+                    </div>
+                `;
+            } else if (file.type === 'audio') {
+                return `<audio controls style="width:100%; margin-top:12px;"><source src="${file.url}" type="audio/mpeg"></audio>`;
+            } else if (file.type === 'video') {
+                return `
+                    <button class="file-link" id="vbtn-${file.id}" onclick="showVideo('${file.id}')">動画を表示</button>
+                    <div id="vcon-${file.id}" style="display:none; margin-top:12px;">
+                        <video id="vid-${file.id}" controls style="width:100%; border-radius:8px;"><source src="${file.url}" type="video/mp4"></video>
+                    </div>
+                `;
+            }
+        }
+
+        function renderDetailFile(file) {
+            return `
+                <div class="file-card">
+                    <div class="file-header"><span class="file-title">${file.title}</span></div>
+                    <a href="${file.url}" target="_blank" class="file-link" style="background:#48bb78;">🌐 Webページを開く</a>
+                </div>
+            `;
         }
 
         function showExternalVideo(id, platform, data) {
             const container = document.getElementById(`video-container-${id}`);
             const iframe = document.getElementById(`video-${id}`);
-            const button = document.getElementById(`video-btn-${id}`);
+            const selector = container.previousElementSibling; // video-selector
             
             if (platform === 'mega') {
-                // /file/ を /embed/ に変換してストリーミングを有効化
                 iframe.src = data.replace('/file/', '/embed/');
             } else if (platform === 'youtube') {
-                iframe.src = `https://www.youtube.com/embed/${data}?autoplay=1&rel=0`;
+                iframe.src = `https://www.youtube.com/embed/${data}?autoplay=1`;
             }
             
             container.style.display = 'block';
-            button.style.display = 'none';
-            trackView(id);
+            selector.style.display = 'none';
         }
 
         function hideExternalVideo(id) {
             const container = document.getElementById(`video-container-${id}`);
             const iframe = document.getElementById(`video-${id}`);
-            const button = document.getElementById(`video-btn-${id}`);
+            const selector = container.previousElementSibling;
             iframe.src = '';
             container.style.display = 'none';
-            button.style.display = 'inline-block';
-        }
-
-        function showVideo(id) {
-            document.getElementById(`video-container-${id}`).style.display = 'block';
-            document.getElementById(`video-btn-${id}`).style.display = 'none';
-            trackView(id);
-        }
-
-        function hideVideo(id) {
-            const video = document.getElementById(`video-${id}`);
-            video.pause();
-            document.getElementById(`video-container-${id}`).style.display = 'none';
-            document.getElementById(`video-btn-${id}`).style.display = 'inline-block';
+            selector.style.display = 'flex';
         }
 
         function showPDF(id, url) {
-            const iframe = document.getElementById(`pdf-${id}`);
-            iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
-            document.getElementById(`pdf-container-${id}`).style.display = 'block';
-            document.getElementById(`preview-btn-${id}`).style.display = 'none';
-            trackView(id);
+            const con = document.getElementById(`pdf-container-${id}`);
+            const ifr = document.getElementById(`pdf-${id}`);
+            ifr.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+            con.style.display = 'block';
         }
 
-        function hidePDF(id) {
-            document.getElementById(`pdf-container-${id}`).style.display = 'none';
-            document.getElementById(`preview-btn-${id}`).style.display = 'inline-block';
+        function showVideo(id) {
+            document.getElementById(`vcon-${id}`).style.display = 'block';
+            document.getElementById(`vbtn-${id}`).style.display = 'none';
         }
 
-        function trackView(id) {
-            const count = parseInt(localStorage.getItem(`view_${id}`) || 0) + 1;
-            localStorage.setItem(`view_${id}`, count);
-        }
-
-        function toggleDetailSection() {
-            const section = document.getElementById('detailSection');
-            section.classList.toggle('expanded');
-        }
-
-        function switchTab(index) {
+        function toggleDetailSection() { document.getElementById('detailSection').classList.toggle('expanded'); }
+        function switchTab(idx) {
             document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.detail-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.detail-tab')[index].classList.add('active');
-            document.getElementById(`detailContent${index}`).classList.add('active');
+            document.querySelectorAll('.detail-tab')[idx].classList.add('active');
+            document.querySelectorAll('.detail-content')[idx].classList.add('active');
         }
 
         renderFiles();
