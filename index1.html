@@ -296,11 +296,11 @@
             if (file.id === 'f1') {
                 return `
                     <div class="video-selector">
-                        <button class="btn-play btn-youtube" onclick="showExternalVideo('f1', 'youtube', '${file.youtubeUrl}')">
+                        <button class="btn-play btn-youtube" onclick="typeof cloudflare !== 'undefined' && cloudflare.reportEvent('f1_youtube'); showExternalVideo('f1', 'youtube', '${file.youtubeUrl}')">
                             <span class="btn-main-text">🎬 YouTubeで視聴</span>
                             <span class="btn-sub-text">通常はこちら（推奨環境）</span>
                         </button>
-                        <button class="btn-play btn-mega" onclick="showExternalVideo('f1', 'mega', '${file.megaUrl}')">
+                        <button class="btn-play btn-mega" onclick="typeof cloudflare !== 'undefined' && cloudflare.reportEvent('f1_mega'); showExternalVideo('f1', 'mega', '${file.megaUrl}')">
                             <span class="btn-main-text">🌐 代替サーバー(MEGA)で視聴</span>
                             <span class="btn-sub-text">YouTubeが制限されている環境の方</span>
                         </button>
@@ -317,8 +317,8 @@
             if (file.type === 'pdf') {
                 return `
                     <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px;">
-                        <button class="file-link desktop-only" id="preview-btn-${file.id}" onclick="showPDF('${file.id}', '${file.url}')">▼ ページ内でプレビュー</button>
-                        <a href="${file.url}" target="_blank" rel="noopener noreferrer" class="file-link" style="background: #764ba2;">
+                        <button class="file-link desktop-only" id="preview-btn-${file.id}" onclick="typeof cloudflare !== 'undefined' && cloudflare.reportEvent('${file.id}_preview'); showPDF('${file.id}', '${file.url}')">▼ ページ内でプレビュー</button>
+                        <a href="${file.url}" target="_blank" rel="noopener noreferrer" class="file-link" style="background: #764ba2;" onclick="typeof cloudflare !== 'undefined' && cloudflare.reportEvent('${file.id}_open')">
                             📄 PDFを別タブで開く
                         </a>
                     </div>
@@ -328,12 +328,12 @@
                     </div>
                 `;
             } else if (file.type === 'audio') {
-                return `<audio controls preload="metadata" style="width: 100%; margin-top: 12px;" onplay="trackView('${file.id}')">
+                return `<audio controls preload="metadata" style="width: 100%; margin-top: 12px;" onplay="trackView('${file.id}'); typeof cloudflare !== 'undefined' && cloudflare.reportEvent('${file.id}_play')">
                     <source src="${file.url}" type="audio/mpeg">
                 </audio>`;
             } else if (file.type === 'video') {
                 return `
-                    <button class="file-link" id="video-btn-${file.id}" onclick="showVideo('${file.id}')">動画を表示</button>
+                    <button class="file-link" id="video-btn-${file.id}" onclick="typeof cloudflare !== 'undefined' && cloudflare.reportEvent('${file.id}_show'); showVideo('${file.id}')">動画を表示</button>
                     <div id="video-container-${file.id}" style="display: none; margin-top: 12px;">
                         <video id="video-${file.id}" controls style="width: 100%; border-radius: 8px;">
                             <source src="${file.url}" type="video/mp4">
@@ -484,7 +484,7 @@
                         id: file.id.toUpperCase(),
                         title: file.title,
                         type: file.type === 'pdf' ? 'PDF' : file.type === 'audio' ? '音声' : '動画',
-                        group: groupData.groupTitle,
+                        group: groupTitle,
                         views: views,
                         completed: completed ? '✓' : '',
                         recommended: file.recommended ? '★' : ''
@@ -518,6 +518,5 @@
         renderFiles();
         loadData();
     </script>
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d6ae660ae5984d0a9d9a9796751c6423"}'></script><!-- End Cloudflare Web Analytics -->
-</body>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d6ae660ae5984d0a9d9a9796751c6423"}'></script></body>
 </html>
