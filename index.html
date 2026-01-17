@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5XWG70EJ5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Y5XWG70EJ5');
-</script>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e96295b1-1408-4424-b155-1aed57e71df0"></script>
+    <script>
+      // ブラウザの言語設定が日本語(ja)の場合のみ計測を実行
+      if (navigator.language.startsWith('ja')) {
+        (function() {
+          var el = document.createElement('script');
+          el.async = true;
+          el.defer = true;
+          el.dataset.websiteId = "e96295b1-1408-4424-b155-1aed57e71df0"; 
+          el.src = "https://cloud.umami.is/script.js";
+          document.head.appendChild(el);
+        })();
+      }
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -487,7 +491,7 @@
                         id: file.id.toUpperCase(),
                         title: file.title,
                         type: file.type === 'pdf' ? 'PDF' : file.type === 'audio' ? '音声' : '動画',
-                        group: groupData.groupTitle,
+                        group: groupTitle,
                         views: views,
                         completed: completed ? '✓' : '',
                         recommended: file.recommended ? '★' : ''
